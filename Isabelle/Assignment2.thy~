@@ -1,0 +1,34 @@
+proposition <[] \<then> (((p \<rightarrow> q) \<rightarrow> p) \<rightarrow> p) # []>
+proof -
+     from Imp_R have ?thesis if <
+          ((p \<rightarrow> q) \<rightarrow> p) # []
+          \<then>
+          p # []
+          >
+          using that by force
+      with Imp_L have ?thesis if <
+          []
+          \<then>
+          (p \<rightarrow> q) # p # []
+          > and <
+          p #
+          ((p \<rightarrow> q) \<rightarrow> p) # []
+          \<then>
+          p # []
+          >
+          using that by force
+      with Basic have ?thesis if <
+          p # []
+          \<then>
+          p # []
+          >
+          using that by force
+      with Imp_R have ?thesis if <
+          p # []
+          \<then>
+          q # []
+          >
+          using that by force
+      with Basic show ?thesis
+          by force
+qed
